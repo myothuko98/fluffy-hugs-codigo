@@ -1,36 +1,36 @@
-'use client'
-import React, { useEffect, useRef } from 'react'
-import Image from 'next/image'
-import gsap from 'gsap'
+'use client';
+import React, { useEffect, useRef } from 'react';
+import Image from 'next/image';
+import gsap from 'gsap';
 
-import { cn } from '@/utils/cn'
+import { cn } from '@/utils/cn';
 
-import HumanImage from '../assets/images/human.webp'
-import Human1Image from '../assets/images/img1.webp'
-import Human2Image from '../assets/images/img2.webp'
-import Human3Image from '../assets/images/img3.webp'
-import Human4Image from '../assets/images/img4.webp'
-import Human5Image from '../assets/images/img5.webp'
-import Human6Image from '../assets/images/img6.webp'
-import Human7Image from '../assets/images/img7.webp'
-import Human8Image from '../assets/images/img8.webp'
-import Human9Image from '../assets/images/img9.webp'
-import Human10Image from '../assets/images/img10.webp'
-import Human11Image from '../assets/images/img11.webp'
-import Human12Image from '../assets/images/img12.webp'
-import Human13Image from '../assets/images/img13.webp'
-import Human14Image from '../assets/images/img14.webp'
-import Human15Image from '../assets/images/img15.webp'
-import Human16Image from '../assets/images/img16.webp'
+import HumanImage from '../assets/images/human.webp';
+import Human1Image from '../assets/images/img1.webp';
+import Human2Image from '../assets/images/img2.webp';
+import Human3Image from '../assets/images/img3.webp';
+import Human4Image from '../assets/images/img4.webp';
+import Human5Image from '../assets/images/img5.webp';
+import Human6Image from '../assets/images/img6.webp';
+import Human7Image from '../assets/images/img7.webp';
+import Human8Image from '../assets/images/img8.webp';
+import Human9Image from '../assets/images/img9.webp';
+import Human10Image from '../assets/images/img10.webp';
+import Human11Image from '../assets/images/img11.webp';
+import Human12Image from '../assets/images/img12.webp';
+import Human13Image from '../assets/images/img13.webp';
+import Human14Image from '../assets/images/img14.webp';
+import Human15Image from '../assets/images/img15.webp';
+import Human16Image from '../assets/images/img16.webp';
 
-import LogoImage from '../assets/images/logo.webp'
-import DiscordImage from '../assets/images/discord.svg'
-import OpeanseaImage from '../assets/images/opensea.svg'
-import TwitterImage from '../assets/images/twitter.svg'
+import LogoImage from '../assets/images/logo.webp';
+import DiscordImage from '../assets/images/discord.svg';
+import OpeanseaImage from '../assets/images/opensea.svg';
+import TwitterImage from '../assets/images/twitter.svg';
 
-import BgImage from '../assets/images/bg-2.png'
+import BgImage from '../assets/images/bg-2.png';
 
-const OFFSET_X = 4
+const OFFSET_X = 4;
 
 let images = [
   { src: Human9Image, pos: { top: 20 - OFFSET_X * 0, left: 10 } },
@@ -63,33 +63,33 @@ let images = [
   { src: Human3Image, pos: { top: 100 - OFFSET_X * 2, left: 50 } },
   { src: Human2Image, pos: { top: 100 - OFFSET_X * 3, left: 70 } },
   { src: Human1Image, pos: { top: 100 - OFFSET_X * 4, left: 90 } },
-]
+];
 
-const FirstPage = () => {
-  const page = useRef(0)
-  const animating = useRef(false)
-  const isMobile = useRef(false)
+const Main = () => {
+  const page = useRef(0);
+  const animating = useRef(false);
+  const isMobile = useRef(false);
 
   useEffect(() => {
     const handleResize = () => {
-      isMobile.current = window.innerWidth < 768
-    }
+      isMobile.current = window.innerWidth < 768;
+    };
 
-    handleResize()
+    handleResize();
 
-    window.addEventListener('resize', handleResize)
+    window.addEventListener('resize', handleResize);
 
     return () => {
-      window.removeEventListener('resize', handleResize)
-    }
-  }, [])
+      window.removeEventListener('resize', handleResize);
+    };
+  }, []);
 
   const pageChange = (opt = 1) => {
-    page.current = page.current + opt
+    page.current = page.current + opt;
     if (page.current >= 3) {
-      page.current = 0
+      page.current = 0;
     } else if (page.current < 0) {
-      page.current = 2
+      page.current = 2;
     }
 
     const mcAnimations = [
@@ -111,7 +111,7 @@ const FirstPage = () => {
         y: isMobile.current ? '0vh' : '-12vh',
         xPercent: isMobile.current ? -50 : -100,
       },
-    ]
+    ];
 
     const humanAnimations = [
       {
@@ -126,7 +126,7 @@ const FirstPage = () => {
         y: '112vh',
         x: '112vw',
       },
-    ]
+    ];
 
     const logoAnimations = [
       {
@@ -138,7 +138,7 @@ const FirstPage = () => {
       {
         opacity: 1,
       },
-    ]
+    ];
 
     const hugeLogoAnimations = [
       {
@@ -150,7 +150,7 @@ const FirstPage = () => {
       {
         opacity: 0,
       },
-    ]
+    ];
 
     const jpTextAnimations = [
       {
@@ -162,76 +162,76 @@ const FirstPage = () => {
       {
         opacity: 1,
       },
-    ]
+    ];
 
     gsap.to('.human', {
       ...humanAnimations[page.current],
       duration: 0.6,
       stagger: 0.01,
       ease: 'power1.inOut',
-    })
+    });
 
     gsap.to('.jp-text', {
       ...jpTextAnimations[page.current],
       duration: 0.4,
       ease: 'power1.inOut',
-    })
+    });
 
     gsap.to('.logo', {
       ...logoAnimations[page.current],
       duration: 0.4,
       ease: 'power1.inOut',
-    })
+    });
 
     gsap.to('.huge-logo', {
       ...hugeLogoAnimations[page.current],
       duration: 0.4,
       delay: page.current === 1 ? 0.4 : 0,
       ease: 'power1.inOut',
-    })
+    });
 
     gsap.to('.mc', {
       ...mcAnimations[page.current],
       duration: 0.6,
       ease: 'power1.inOut',
       onComplete: () => {
-        animating.current = false
+        animating.current = false;
       },
-    })
-  }
+    });
+  };
 
   const handleWheel = (e: React.WheelEvent) => {
-    if (animating.current) return
+    if (animating.current) return;
 
     if (e.deltaY > 0) {
-      animating.current = true
-      pageChange(1)
+      animating.current = true;
+      pageChange(1);
     } else {
-      animating.current = true
-      pageChange(-1)
+      animating.current = true;
+      pageChange(-1);
     }
-  }
+  };
 
-  const prevClientY = useRef(0)
+  const prevClientY = useRef(0);
 
   const handleTouchStart = (e: React.TouchEvent) => {
-    const touch = e.touches[0]
-    prevClientY.current = touch.clientY
-  }
+    const touch = e.touches[0];
+    prevClientY.current = touch.clientY;
+  };
 
   const handleTouchMove = (e: React.TouchEvent) => {
-    const touch = e.touches[0]
+    const touch = e.touches[0];
 
-    if (animating.current) return
+    if (animating.current) return;
 
     if (touch.clientY < prevClientY.current) {
-      animating.current = true
-      pageChange(1)
+      animating.current = true;
+      pageChange(1);
     } else {
-      animating.current = true
-      pageChange(-1)
+      animating.current = true;
+      pageChange(-1);
     }
-  }
+  };
 
   return (
     <div
@@ -340,12 +340,12 @@ const FirstPage = () => {
       </div>
 
       <div className="absolute text-[#374a91] font-semibold text-sm lg:text-2xl tracking-[1rem] lg:tracking-[1.6rem] left-[10vw] lg:left-[55vw] top-[20%] lg:top-[40%] jp-text opacity-0">
-        <p className="mb-5">ふわふわの動物たちに、</p>
-        <p className="mb-10">囲まれて暮らしたい</p>
-        <p>ペットや動物が大好きなあなたへ</p>
+        <p className="mb-5 wave">ふわふわの動物たちに、</p>
+        <p className="mb-10 wave">囲まれて暮らしたい</p>
+        <p className="wave">ペットや動物が大好きなあなたへ</p>
       </div>
     </div>
-  )
-}
+  );
+};
 
-export default FirstPage
+export default Main;
